@@ -1,1 +1,87 @@
-<p>fomulario works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+            <h3 class="text-white">Alta de Alumno en el curso {{course_name}}</h3>
+            <p class="text-white">Complete los datos abajo.</p>
+            <form [formGroup]="fg" (ngSubmit)="submit()" novalidate>
+
+                <div>
+                    <input class="form-control" type="text" formControlName="name" name="name" placeholder="Nombre"
+                        required>
+                    <!-- Atención: 'minlength' tiene que ser con la 'l' minúscula -->
+                    <p *ngIf="fg.get('name')?.errors?.['minlength']" class="text-white">El nombre no es válido!</p>
+                    <div *ngIf="fg.get('name')?.errors?.['required']" class="text-white">¡El nombre no puede quedar
+                        vacío!</div>
+                </div>
+
+                <div>
+                    <input class="form-control" type="text" formControlName="lastName" name="lastName"
+                        placeholder="Apellido(s)" required>
+                    <div *ngIf="fg.get('lastName')?.errors?.['minlength']" class="text-white">El apellido no es
+                        válido!
+                    </div>
+                    <div *ngIf="fg.get('lastName')?.errors?.['required']" class="text-white">¡El apellido no puede
+                        quedar vacío!</div>
+                </div>
+
+                <div>
+                    <input class="form-control" type="number" formControlName="age" name="age" placeholder="Edad"
+                        required>
+                    <div *ngIf="fg.get('age')?.errors?.['min'] || fg.get('age')?.errors?.['max']" class="text-white">
+                        Revise la edad indicada.</div>
+                    <div *ngIf="fg.get('age')?.errors?.['required']" class="text-white">¡Debe indicar la edad!</div>
+                </div>
+
+                <div>
+                    <input class="form-control" type="email" name="email" formControlName="email"
+                        placeholder="Correo electrónico" required>
+                    <div *ngIf="fg.get('email')?.errors?.['email']" class="text-white">¡El correo proporcionado no
+                        es
+                        válido!</div>
+                    <div *ngIf="fg.get('email')?.errors?.['required']" class="text-white">¡Necesario indicar el
+                        correo
+                        electrónico!</div>
+                </div>
+
+                <div>
+                    <select formControlName="gender" class="form-select mt-3" required>
+                        <option [ngValue]="null" selected disabled value="">Género:</option>
+                        <option [ngValue]="genders[0]">Hombre</option>
+                        <option [ngValue]="genders[1]">Mujer</option>
+                        <option [ngValue]="genders[2]">Otro</option>
+                    </select>
+                    <div *ngIf="fg.get('gender')?.errors?.['required']" class="text-white">¡Necesario indicar
+                        género!
+                    </div>
+                </div>
+
+
+                <div>
+                    <input class="form-control" type="password" formControlName="password" name="password"
+                        placeholder="Password" required>
+                    <div *ngIf="fg.get('password')?.errors?.['minlength']" class="text-white">¡El Password debe
+                        contener
+                        6 caracteres o más!</div>
+                    <div *ngIf="fg.get('password')?.errors?.['required']" class="text-white">¡El Password no puede
+                        quedar vacío!</div>
+                </div>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" formControlName="validated" value="" id="data_ok"
+                        required>
+                    <label class="text-white">Confirmo que los datos son correctos.</label>
+                    <div *ngIf="fg.get('validated')?.errors?.['required']" class="text-white">¡Por favor confirma
+                        que
+                        los datos sean correctos!</div>
+                </div>
+
+                <div class="form-button mt-3">
+                    <button id="submit" type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

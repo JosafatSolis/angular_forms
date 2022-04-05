@@ -1,0 +1,14 @@
+                       <div class="col-md-12 mt-3" >
+                        <label class="mb-3 mr-1" for="gender">Género: </label>
+
+                        <input type="radio" class="btn-check" name="gender" id="male" value="male" [(ngModel)]="selection.selectedBy" autocomplete="off" required #selectedBy="ngModel">
+                        <label class="btn btn-sm btn-outline-secondary" for="male">Hombre</label>
+
+                        <input type="radio" class="btn-check" name="gender" id="female" [(ngModel)]="selection.selectedBy" value="female" autocomplete="off" required>
+                        <label class="btn btn-sm btn-outline-secondary" for="female">Mujer</label>
+
+                        <input type="radio" class="btn-check" name="gender" id="other" [(ngModel)]="selection.selectedBy" value="other" autocomplete="off" required>
+                        <label class="btn btn-sm btn-outline-secondary" for="other">Otro</label>
+                           <div class="valid-feedback mv-up">¡Has indicado el género!</div>
+                            <div class="invalid-feedback mv-up">¡Por favor indica el género!</div>
+                        </div>
